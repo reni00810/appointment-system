@@ -1,0 +1,18 @@
+default: &default
+  adapter: <%= Rails.application.credentials.dig(:database, :adapter) %>
+  encoding: <%= Rails.application.credentials.dig(:database, :encoding) %>
+  pool: <%= Rails.application.credentials.dig(:database, :pool) %>
+  database: <%= Rails.application.credentials.dig(:database, :database) %>
+  username: <%= Rails.application.credentials.dig(:database, :username) %>
+  password: <%= Rails.application.credentials.dig(:database, :password) %>
+  host: <%= Rails.application.credentials.dig(:database, :host) %>
+  
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

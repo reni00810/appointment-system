@@ -1,0 +1,20 @@
+.row
+  .col-lg-12.col-md-12
+    .row
+      .col
+        %h2 Appointment
+      .col
+        = link_to "Back", patients_appointments_path, class: 'btn btn-primary float-right'
+    .row
+      .col
+        %span Doctor:
+        = @appointment.doctor.try(:name)
+        %br
+        %span Date:
+        = @appointment.date
+        %br
+        %span Time:
+        = @appointment.time.strftime("%H:%M")
+        %br
+        %span Status:
+        = @appointment.status

@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title AppointmentSystem
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = yield
+
+    :javascript
+      $(document).ready(function(){
+        var success_msg = "#{flash[:success]}"
+        var alert_msg   = "#{flash[:alert]}"
+        var delete_msg  = "#{flash[:delete]}"
+        var notice_msg  = "#{flash[:notice]}"
+        if (success_msg) {
+          display_notify('fa fa-check', success_msg, 'success');
+        }
+        if (alert_msg) {
+          display_notify('fa fa-exclamation-triangle', alert_msg, 'warning');
+        }
+        if (delete_msg) {
+          display_notify('fa fa-trash', delete_msg, 'danger');
+        }
+        if (notice_msg) {
+          display_notify('fa fa-info-circle', notice_msg, 'info');
+        }
+      });

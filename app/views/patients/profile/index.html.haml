@@ -1,0 +1,27 @@
+.container-fluid
+  .row
+    %h2 Profile
+  .row
+    .col-md-12
+      = form_for(@patient, url: patients_profile_path(@patient.id)) do |f|
+        .row
+          .col
+            = f.label :name
+            = f.text_field :name, class: "form-control"
+          .col
+            = f.label :address
+            = f.text_field :address, class: "form-control"
+        .row
+          .col
+            = f.label :gender
+            %br
+            = f.radio_button :gender, 'M', checked: true , class: "radio-custom" , id: "radio-1"
+            %label.radio-custom-label{for: "radio-1"} Male
+            = f.radio_button :gender, 'F', class: "radio-custom" , id: "radio-1"
+            %label.radio-custom-label{for: "radio-1"} Female
+          .col
+            = f.label :phone
+            = f.text_field :phone, class: "form-control"
+        .row
+          .col
+            = f.submit 'Update', class: 'btn btn-primary'

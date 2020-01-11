@@ -1,0 +1,43 @@
+.row
+  .col-lg-12.col-md-12
+    .row
+      .col
+        %h2 Appointments
+      .col
+        = link_to "New Appointment", new_patients_appointment_path, class: 'btn btn-primary float-right'
+    .row
+      .col
+        %table.table.table-striped.table-sm
+          - if @appointments.present?
+            %thead
+              %tr
+                %th Doctore
+                %th Date
+                %th Time
+                %th Status
+                %th Action
+            %tbody
+              - @appointments.each do |appointment|
+                %tr
+                  %td
+                    = appointment.doctor.try(:name)
+                  %td
+                    = appointment.date
+                  %td
+                    = appointment.time.strftime("%H:%M")
+                  %td
+                    = appointment.status
+                  %td
+                    = link_to "View", patients_appointment_path(appointment.id)
+                    - if appointment.status == 'Request'
+                      = link_to "Edit", edit_patients_appointment_path(appointment.id)
+                      = link_to "Delete", patients_appointment_path(appointment.id), method: :delete
+          - else
+            %tr
+              %td{style: 'text-align: center'}
+                No Appointments!
+        - if @appointments.present?
+          %span.justify-content-left.float-left
+          = page_entries_info @appointments, entry_name: 'appointments'
+          %nav.d-inline-block.float-right{"aria-label" => "page navigation"}
+            = paginate @appointments

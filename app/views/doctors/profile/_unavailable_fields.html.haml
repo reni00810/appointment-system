@@ -1,0 +1,10 @@
+.row
+  .col
+    = f.label :date
+    = f.date_field :date, class: 'form-control'
+  .col
+    %label Start
+    = f.time_field :opening_time, class: "form-control"
+  .col
+    %label End
+    = f.time_field :closing_time, class: "form-control"
